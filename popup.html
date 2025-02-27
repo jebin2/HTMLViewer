@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Viewer</title>
+  <style>
+    body {
+      width: 350px;
+      height: 300px;
+      padding: 16px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: #333;
+      border-radius: 8px;
+      margin: 0;
+      transition: width 0.3s, height 0.3s;
+      overflow: hidden;
+    }
+    
+    body.expanded {
+      width: 600px;
+      height: 500px;
+    }
+    
+    .container {
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      height: calc(100% - 34px);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #222;
+      letter-spacing: 0.3px;
+    }
+    
+    .resize-icon {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    .resize-icon:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .resize-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    textarea {
+      width: 100%;
+      flex-grow: 1;
+      margin-bottom: 16px;
+      resize: none;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      background-color: rgba(255, 255, 255, 0.9);
+      font-family: 'Consolas', monospace;
+      font-size: 13px;
+      transition: border 0.3s;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: rgba(0, 0, 0, 0.3);
+    }
+    
+    .button-container {
+      display: flex;
+      justify-content: flex-end;
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 14px;
+    }
+    
+    button:hover {
+      background-color: #000;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    button:active {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">HTML Viewer</div>
+      <div class="resize-icon" id="resizeToggle" title="Toggle size">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 3h6v6"></path>
+          <path d="M9 21H3v-6"></path>
+          <path d="M21 3l-7 7"></path>
+          <path d="M3 21l7-7"></path>
+        </svg>
+      </div>
+    </div>
+    <textarea id="htmlInput" placeholder="Paste your HTML code here..."></textarea>
+    <div class="button-container">
+      <button id="openInNewTab">New Tab</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+  <script src="resize.js"></script>
+</body>
+</html>
